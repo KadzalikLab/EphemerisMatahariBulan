@@ -1,4 +1,4 @@
-package com.falak.Term;
+package com.falak.term;
 
 public class ElpMpp02TruncTerm {
     public  static  double meanLongitude(double T){

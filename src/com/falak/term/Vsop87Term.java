@@ -1,4 +1,4 @@
-package com.falak.Term;
+package com.falak.term;
 
 /**
  * Term Vsop87 Sun diambil dari folder aplikasi <a href="http://www.icoproject.org/accut.html?l=en">Accurate Times </a> file TermFull.ode
@@ -8,8 +8,6 @@ package com.falak.Term;
  * @since 2021-04-13
  */
 public class Vsop87Term {
-
-
 
     public static double earthHeliocentricLongitude(double tau){
         double l1=0;

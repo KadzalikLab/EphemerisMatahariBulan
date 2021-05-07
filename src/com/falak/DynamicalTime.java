@@ -13,21 +13,9 @@ public class DynamicalTime {
      *
      * @return          delta T
      *
-     * @author           faizin @kadzaliklab
+     * @author
      * @see <a href="https://eclipse.gsfc.nasa.gov/SEcat5/deltatpoly.html">https://eclipse.gsfc.nasa.gov/SEcat5/deltatpoly.html</a>
      */
-
-//    public static double delta_t(double tanggal, double bulan, double tahun){
-//        double nilai_tahun=tahun+((bulan-1)/12)+tanggal/365;
-//        double delta_t=0;
-//        if (tahun>1986&&tahun<2005) delta_t=62.86+0.3345*(nilai_tahun-2000)-0.060374*(nilai_tahun-2000)*(nilai_tahun-2000)+0.0017275*(nilai_tahun-2000)*(nilai_tahun-2000)+0.000651814*(nilai_tahun-2000)*(nilai_tahun-2000)*(nilai_tahun-2000)*(nilai_tahun-2000)+0.00002373599*(nilai_tahun-2000)*(nilai_tahun-2000)*(nilai_tahun-2000)*(nilai_tahun-2000)*(nilai_tahun-2000);
-//        else if (tahun>2005&&tahun<2050) delta_t=62.92+0.32217*(nilai_tahun-2000)+0.005589*(nilai_tahun-2000)*(nilai_tahun-2000);
-//        else if (tahun>2050&&tahun<=2150) delta_t=-20+32*((nilai_tahun-1820)/100)-0.5628*(2150-nilai_tahun);
-//        else if (tahun>2150) delta_t=-20+32*((nilai_tahun-1820)/100)*((nilai_tahun-1820)/100);
-//
-//
-//        return delta_t;
-//    }
 
 
     public static double delta_t(double tglM_UT,double blnM_UT,double thnM_UT){
@@ -105,6 +93,8 @@ public class DynamicalTime {
      * Estimate Delta T for the given Calendar. This is based on Espenak && Meeus, "Five Millennium Canon of
      * Solar Eclipses: -1999 to +3000" (NASA/TP-2006-214141).
      *
+     * Mendapatkan nilai perkiraan delta T menggunakan rumus POLYNOMIAL EXPRESSIONS FOR DELTA T (ΔT)
+     * dalam rentang tahun 1986 - diatas 2150
      * @param tanggal    Masehi
      * @param bulan      Masehi
      * @param tahun      Masehi

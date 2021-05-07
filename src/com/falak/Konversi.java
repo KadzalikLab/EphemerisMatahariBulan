@@ -1,13 +1,10 @@
 package com.falak;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 public class Konversi {
 
     //Fungsi pengubah tanggal ke julian day
     //parameter yang harus diisi: tahun, bulan, tanggal, jam, menit, detik
-    public static double km_jd(double tanggal, double bulan, double tahun, double jamDes){
+    public static double kmJd(double tanggal, double bulan, double tahun, double jamDes){
 
         if (bulan<=2){bulan+=12; tahun-=1;}
         //bila bulan januari atau februari maka dianggap bulan ke 13/14 tahun sebelunmya
@@ -32,7 +29,7 @@ public class Konversi {
 
     //Fungsi pengubah  julian day  ke tanggal dan pukul
     //parameter yang harus diisi: julian day
-    public static  int [] jd_km(double julian_day){
+    public static  int [] jdKm(double julian_day){
 
         double jd1=julian_day+0.5;
         int Z= (int)jd1;
@@ -81,7 +78,7 @@ public class Konversi {
 
     }
 
-   public static  double jd_pukul(double julian_day){
+   public static  double jdPukul(double julian_day){
 
         double jd1=julian_day+0.5;
         int Z= (int)jd1;
@@ -122,10 +119,10 @@ public class Konversi {
 
         //Fungsi pengubah Masehi ke Hijri
     //parameter yang harus diisi: tahun, bulan, tanggal
-    public static int [] km_kh(double tanggal, double bulan, double tahun){
+    public static int [] kmKh(double tanggal, double bulan, double tahun){
 
         //tanggal diatas dijadikan julian day dulu melalui fungsi Konversi
-        double julian_day=Konversi.km_jd(tanggal,bulan,tahun,0);
+        double julian_day=Konversi.kmJd(tanggal,bulan,tahun,0);
 
         double selisih_hari=julian_day-1948438.5; //selisih hari tanggal masehi dengan epoch/tahun nol kalender hijri
         int siklus= (int)((selisih_hari-1)/10631);//kelipatan 30 tahun atau berapakah siklus kabisat yang terjadi selama "selisih hari"
@@ -189,7 +186,7 @@ public class Konversi {
 
     //Fungsi pengubah Masehi ke Hijri
     //parameter yang harus diisi: tahun, bulan, tanggal
-    public static int [] kh_km(double tahun, double bulan, double tanggal){
+    public static int [] khKm(double tahun, double bulan, double tanggal){
 
         int siklus=(int)((tahun-1)/30);//berapa siklus kabisat yang terjadi selama "tahun" diatas
         int sisa_siklus= (int) (tahun-(siklus*30));//sisa siklus yang berupa tahun
@@ -308,22 +305,22 @@ public class Konversi {
 
 
     public  static String jd_kmStringPasaran(double jd){
-        int tanggal=Konversi.jd_km(jd)[1]; // 1 berarti mengambil array urutan nomor 1, yaitu yang berisikan nilai tanggal
-        int bulan=Konversi.jd_km(jd)[2];
-        int tahun=Konversi.jd_km(jd)[3];
+        int tanggal=Konversi.jdKm(jd)[1]; // 1 berarti mengambil array urutan nomor 1, yaitu yang berisikan nilai tanggal
+        int bulan=Konversi.jdKm(jd)[2];
+        int tahun=Konversi.jdKm(jd)[3];
 
-        int nomor_hari = Konversi.jd_km(jd)[7]; // 7 berarti mengambil array urutan nomor 7, yaitu yang berisikan nilai nomor hari
-        int nomor_pasaran= Konversi.jd_km(jd)[8];
+        int nomor_hari = Konversi.jdKm(jd)[7]; // 7 berarti mengambil array urutan nomor 7, yaitu yang berisikan nilai nomor hari
+        int nomor_pasaran= Konversi.jdKm(jd)[8];
 
 
         return  namahari(nomor_hari)+" "+namapasaran(nomor_pasaran)+", "+tanggal+" "+namaBulanMasehi(bulan)+" "+tahun;}
 
     public  static String jd_kmString(double jd){
-        int tanggal=Konversi.jd_km(jd)[1]; // 1 berarti mengambil array urutan nomor 1, yaitu yang berisikan nilai tanggal
-        int bulan=Konversi.jd_km(jd)[2];
-        int tahun=Konversi.jd_km(jd)[3];
+        int tanggal=Konversi.jdKm(jd)[1]; // 1 berarti mengambil array urutan nomor 1, yaitu yang berisikan nilai tanggal
+        int bulan=Konversi.jdKm(jd)[2];
+        int tahun=Konversi.jdKm(jd)[3];
 
-        int nomor_hari = Konversi.jd_km(jd)[7]; // 7 berarti mengambil array urutan nomor 7, yaitu yang berisikan nilai nomor hari
+        int nomor_hari = Konversi.jdKm(jd)[7]; // 7 berarti mengambil array urutan nomor 7, yaitu yang berisikan nilai nomor hari
 
 
 

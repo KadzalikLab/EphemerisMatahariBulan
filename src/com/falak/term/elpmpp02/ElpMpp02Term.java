@@ -1,10 +1,9 @@
-package com.falak.elpmpp02;
+package com.falak.term.elpmpp02;
 
 
 public class ElpMpp02Term {
 
     public static  double koreksiLongitude(double t1,double t2,double t3,double t4 ){
-
 
         double p,p1,p2,p3,p4,p0;
         p0=0; p1=5029.0966; p2=1.112;p3=0.000077;p4=-0.00002353;
@@ -53,27 +52,5 @@ public class ElpMpp02Term {
 
         return  r0+r1*t1+r2*t2+r3*t3+0*t4;
     }
-
-
-
-
-
-//    static  double _term(double t1_L,double t2_L,double t3_L,double t4_L){
-//
-//
-//        double []a={};
-//        double []t0={};
-//        double []t1={};
-//        double []t2={};
-//        double []t3={};
-//        double []t4={};
-//
-//        double L=0;
-//        for (int i = 0; i<a.length;i++){
-//            L+=a[i]*Math.sin(t0[i]+t1[i]*t1_L+t2[i]*t2_L+t3[i]*t3_L+t4[i]*t4_L);
-//        }
-//
-//        return L;
-//    }
 
 }

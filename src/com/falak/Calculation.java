@@ -1,10 +1,7 @@
 package com.falak;
 
-import com.falak.Term.Nutasi;
-import com.falak.elpmpp02.ElpMpp02Term;
-import com.falak.Term.ElpMpp02TruncTerm;
-import com.falak.Term.MeeusTerm;
-import com.falak.Term.Vsop87Term;
+import com.falak.term.*;
+import com.falak.term.elpmpp02.ElpMpp02Term;
 
 public class Calculation {
 
@@ -357,4 +354,78 @@ public class Calculation {
                 , iluminasiB//10
         };
     }
+
+
+    public static double[] elp2000(double jd) {
+
+
+        double T = (jd - 2451545) / 36525;
+        double epsilon = Nutasi.deltaPsiDanEpsilon(T)[6]; //Obliquity / kemiringan bumi
+        double epsilon_r = Math.toRadians(epsilon);
+
+        double mean_longitude_moon = (218.3164591+481267.88134236*T-0.0013268*T*T+T*T*T/538841-T*T*T*T/65194000)%360;
+        double koreksibujurB = Elp2000.longitude(T);
+        double deltaPsi = Nutasi.deltaPsiDanEpsilon(T)[2];
+
+        //Koreksi bujur bulan
+        double true_longitude_moon = (mean_longitude_moon + koreksibujurB) % 360;
+        double apparent_longitude_moon = (true_longitude_moon + deltaPsi) % 360;
+        if (apparent_longitude_moon < 0) apparent_longitude_moon += 360;
+
+        double bujurB_nampak_r = Math.toRadians(apparent_longitude_moon);
+
+        //Koreksi lintang bulan
+        double aberasiLat = -0.00001754 * Math.sin(Math.toRadians(183.3 + 483202 * T));
+        double latitude_moon = Elp2000.latitude(T)+aberasiLat;
+        double lintangB_r = Math.toRadians(latitude_moon);
+
+        //Koreksi jarak bumi-bulan
+        double aberasiRadius = 0.0708 * Math.cos(Math.toRadians(225 + 477199 * T));
+        double moonEarth_distance = Elp2000.radius(T)+aberasiRadius;
+
+        double horizontalParallax_moon = Math.toDegrees(Math.asin(6378.14 / moonEarth_distance));
+        double semiDiameter_moon = 358473400 / (moonEarth_distance * 3600);
+
+        double apparent_RightAscension_moon = (Math.toDegrees(Math.atan2(Math.sin(bujurB_nampak_r) * Math.cos(epsilon_r) - Math.tan(lintangB_r) * Math.sin(epsilon_r), Math.cos(bujurB_nampak_r)))) % 360;
+        if (apparent_RightAscension_moon < 0) apparent_RightAscension_moon = (apparent_RightAscension_moon + 360) % 360;
+
+
+        double apparent_Declination_moon = Math.toDegrees(Math.asin(Math.sin(lintangB_r) * Math.cos(epsilon_r) + Math.cos(lintangB_r) * Math.sin(epsilon_r) * Math.sin(bujurB_nampak_r)));
+        double deltaBulan_r = Math.toRadians(apparent_Declination_moon);
+
+
+        double deltaM_r = Math.toRadians(Sun.Vsop87.apparentDeclination(jd));
+        double alphaMatahari = (Sun.Vsop87.apparentRightAscension(jd));
+        double jarakBm_M = (vsop87(jd)[11]);//AU
+
+
+        double y_num, x_num;
+        y_num = Math.cos(deltaM_r) * Math.sin(Math.toRadians(alphaMatahari - apparent_RightAscension_moon));
+        x_num = Math.sin(deltaM_r) * Math.cos(deltaBulan_r) - Math.cos(deltaM_r) * Math.sin(deltaBulan_r) * Math.cos(Math.toRadians(alphaMatahari - apparent_RightAscension_moon));
+        double chi = Math.toDegrees(Math.atan2(y_num, x_num));
+        if (chi < 0) chi += 360;
+
+        double sudutFai = Math.acos(Math.sin(deltaBulan_r) * Math.sin(deltaM_r) + Math.cos(deltaBulan_r) * Math.cos(deltaM_r) * Math.cos(Math.toRadians(apparent_RightAscension_moon - alphaMatahari)));
+        double sudutFase = Math.atan2(jarakBm_M * Math.sin(sudutFai), moonEarth_distance - jarakBm_M * Math.cos(sudutFai));
+        // double sudutFase_d=Math.toDegrees(sudutFase);
+
+        double iluminasiB = (1 + Math.cos(sudutFase)) / 2;
+
+
+        return new double[]{0
+                , true_longitude_moon//1
+                , apparent_longitude_moon//2
+                , latitude_moon//3
+                , apparent_RightAscension_moon//4
+                , apparent_Declination_moon//5
+                , moonEarth_distance//6
+                , semiDiameter_moon//7
+                , horizontalParallax_moon//8
+                , chi//9
+                , iluminasiB//10
+        };
+    }
+
+
+
 }
