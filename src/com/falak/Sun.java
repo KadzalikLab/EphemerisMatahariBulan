@@ -3,57 +3,57 @@ package com.falak;
 public class Sun {
 
     /**
-     * Mendapatkan data-data matahari menggunakan metode buku Astonomy Algorithm - Jean Meeus
-     * dimana perhitunganya ada di class: {@link Calculation#meeus(double jd)}}
+     * Mendapatkan data-data matahari menggunakan metode buku Astonomy Algorithms - Jean Meeus
+     * dimana perhitunganya ada di class: {@link Calculation#astroAlgo(double jd)}}
      * @author Kadzalik Lab
      * @version 1.0
      * @see <a href="http://www.agopax.it/Libri_astronomia/pdf/Astronomical%20Algorithms.pdf">http://www.agopax.it/Libri_astronomia/pdf/Astronomical%20Algorithms.pdf</a>
      * @since 2021-03-31
      */
-    static class Meeus {
+    static class AstroAlgo {
 
 
         //nilai sebenarnya Bujur Matahari Koordinat Ekliptika Geosentrik
         static double trueGeocentricLongitude(double jd) {
-            return Calculation.meeus(jd)[1];
+            return Calculation.astroAlgo(jd)[1];
         }
         //nilai nampak Bujur Matahari Koordinat Ekliptika Geosentrik
         static double apparentGeocentricLongitude(double jd) {
-            return Calculation.meeus(jd)[2];
+            return Calculation.astroAlgo(jd)[2];
         }
 
         //nilai sebenarnya Lintang Matahari Koordinat Ekliptika Geosentrik
         static double geocentricLatitude(double jd) {
-            return Calculation.meeus(jd)[3];
+            return Calculation.astroAlgo(jd)[3];
         }
 
         //nilai nampak Asensio rekta / Panjatan tegak / Bujur Matahari Koordinat Ekuator Geosentrik
         static double apparentRightAscension(double jd) {
-            return Calculation.meeus(jd)[4];
+            return Calculation.astroAlgo(jd)[4];
         }
 
         //nilai nampak Deklinasi / lintang Matahari Koordinat Ekuator Geosentrik
         static double apparentDeclination(double jd) {
-            return Calculation.meeus(jd)[5];
+            return Calculation.astroAlgo(jd)[5];
         }
 
         //Jarak Bumi - Matahari Vector
         static double trueGeocentricDistance(double jd) {
-            return Calculation.meeus(jd)[6];
+            return Calculation.astroAlgo(jd)[6];
         }
 
         //Semi diameter / piringan Matahari
         static double angularSemiDiameter(double jd) {
-            return Calculation.meeus(jd)[7];
+            return Calculation.astroAlgo(jd)[7];
         }
         //Perata waktu
         static double equationOfTime(double jd) {
 
             double tau, alpha, deltaPsi, epsilon, L0, e;
-            tau = Calculation.meeus(jd)[8];
+            tau = Calculation.astroAlgo(jd)[8];
             alpha = apparentRightAscension(jd);
-            deltaPsi = Calculation.meeus(jd)[9];
-            epsilon = Calculation.meeus(jd)[10];
+            deltaPsi = Calculation.astroAlgo(jd)[9];
+            epsilon = Calculation.astroAlgo(jd)[10];
             L0 = 280.4664567 + 360007.6982779 * tau + 0.03032028 * Math.pow(tau, 2) + Math.pow(tau, 3) / 49931 - Math.pow(tau, 4) / 15300 - Math.pow(tau, 5) / 2000000;
             L0 %= 360;
             e = L0 - 0.0057183 - alpha + deltaPsi * Math.cos(Math.toRadians(epsilon));
@@ -76,7 +76,7 @@ public class Sun {
 
         //Kemiringan sumbu bumi
         static double trueObliquity(double jd) {
-            return Calculation.meeus(jd)[10];
+            return Calculation.astroAlgo(jd)[10];
         }
 
     }
@@ -147,7 +147,7 @@ public class Sun {
         }
 
         static double trueObliquity(double jd) {
-            return Calculation.meeus(jd)[10];
+            return Calculation.astroAlgo(jd)[10];
         }
 
     }

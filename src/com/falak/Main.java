@@ -1,5 +1,7 @@
 package com.falak;
 
+import com.falak.term.Nutation;
+
 import java.util.Locale;
 
 public class Main {
@@ -26,6 +28,8 @@ public class Main {
 
         double delta_T=DynamicalTime.delta_t(tgl,bln,thn); // mau pakai delta T atau tidak?
         // jd +=(delta_T/86400); //JD waktu TD(Dynamical time)
+        double t = (jd - 2451545) / 36525.0;
+        System.out.println(Nutation.deltaPsi(t));
 
         System.out.printf(format2
                 , "Pukul"
@@ -38,8 +42,8 @@ public class Main {
                 , "Obliquity"
                 , "EoT"
         );
-        meuusMethod(jd);
-        vsop87Metode(jd);
+        metodeAstroAlgo(jd);
+        metodeVsop87(jd);
 
         System.out.println(System.lineSeparator());
         System.out.printf(format2
@@ -53,10 +57,10 @@ public class Main {
                 , "Angle Bright"
                 , "Fib"
         );
-        meuusMoonMethod(jd);
-        elp2000Method(jd);
-        elpMpp02TruncMethod(jd);
-        elpMpp02Method(jd);
+        metodeAstroAlgoBulan(jd);
+        metodeElp2000(jd);
+        metodeElpMpp02Trunc(jd);
+        metodeElpMpp02(jd);
 
 //        for (int i = 0; i<=24;i++){
 //            vsop87Metode(jd);
@@ -68,15 +72,15 @@ public class Main {
 
     }
 
-    static void meuusMethod(double jd){
-        double longitude_sun_true = Sun.Meeus.trueGeocentricLongitude(jd);
-        double latitude_sun = Sun.Meeus.geocentricLatitude(jd);
-        double rightAscension_sun = Sun.Meeus.apparentRightAscension(jd);
-        double declination_sun = Sun.Meeus.apparentDeclination(jd);
-        double geo_distance_sun = Sun.Meeus.trueGeocentricDistance(jd);
-        double semiDiameter_sun = Sun.Meeus.angularSemiDiameter(jd);
-        double obliquity_earth = Sun.Meeus.trueObliquity(jd);
-        double eot = Sun.Meeus.equationOfTime(jd);
+    static void metodeAstroAlgo(double jd){
+        double longitude_sun_true = Sun.AstroAlgo.trueGeocentricLongitude(jd);
+        double latitude_sun = Sun.AstroAlgo.geocentricLatitude(jd);
+        double rightAscension_sun = Sun.AstroAlgo.apparentRightAscension(jd);
+        double declination_sun = Sun.AstroAlgo.apparentDeclination(jd);
+        double geo_distance_sun = Sun.AstroAlgo.trueGeocentricDistance(jd);
+        double semiDiameter_sun = Sun.AstroAlgo.angularSemiDiameter(jd);
+        double obliquity_earth = Sun.AstroAlgo.trueObliquity(jd);
+        double eot = Sun.AstroAlgo.equationOfTime(jd);
 
 //        printDms("Ecliptic Longitude",longitude_sun_true);
 //        printDigit("Ecliptic Latitude",latitude_sun,3);
@@ -98,15 +102,15 @@ public class Main {
                 ,eot
         );
     }
-    static void meuusMoonMethod(double jd){
-        double longitude_moon_appr = Moon.Meeus.apparentGeocentricLongitude(jd);
-        double latitude_moon_appr = Moon.Meeus.apparentGeocentricLatitude(jd);
-        double rightAscension_moon= Moon.Meeus.apparentRightAscension(jd);
-        double declination_moon = Moon.Meeus.apparentDeclination(jd);
-        double horizontalParallax_moon = Moon.Meeus.equatorialHorizontalParallax(jd);
-        double semiDiameter_moon = Moon.Meeus.angularSemiDiameter(jd);
-        double angleBrightLimb_moon = Moon.Meeus.brightLimbAngle(jd);
-        double fractionillumination_moon = Moon.Meeus.diskIlluminatedFraction(jd);
+    static void metodeAstroAlgoBulan(double jd){
+        double longitude_moon_appr = Moon.AstroAlgo.apparentGeocentricLongitude(jd);
+        double latitude_moon_appr = Moon.AstroAlgo.apparentGeocentricLatitude(jd);
+        double rightAscension_moon= Moon.AstroAlgo.apparentRightAscension(jd);
+        double declination_moon = Moon.AstroAlgo.apparentDeclination(jd);
+        double horizontalParallax_moon = Moon.AstroAlgo.equatorialHorizontalParallax(jd);
+        double semiDiameter_moon = Moon.AstroAlgo.angularSemiDiameter(jd);
+        double angleBrightLimb_moon = Moon.AstroAlgo.brightLimbAngle(jd);
+        double fractionillumination_moon = Moon.AstroAlgo.diskIlluminatedFraction(jd);
 
         printRowColMoon(jd
                 ,longitude_moon_appr
@@ -129,7 +133,7 @@ public class Main {
 //        printDigit("Fraction Illumination",fractionillumination_moon,5);
     }
 
-    static void vsop87Metode(double jd){
+    static void metodeVsop87(double jd){
 
         double longitude_sun_true = Sun.Vsop87.apparentGeocentricLongitude(jd);
         double latitude_sun = Sun.Vsop87.geocentricLatitude(jd);
@@ -165,7 +169,7 @@ public class Main {
 
     }
 
-    static void elpMpp02Method(double jd){
+    static void metodeElpMpp02(double jd){
         double longitude_moon_appr = Moon.Elpmpp02.apparentGeocentricLongitude(jd);
         double latitude_moon_appr = Moon.Elpmpp02.apparentGeocentricLatitude(jd);
         double rightAscension_moon= Moon.Elpmpp02.apparentRightAscension(jd);
@@ -198,7 +202,7 @@ public class Main {
 
 
     }
-    static void elpMpp02TruncMethod(double jd){
+    static void metodeElpMpp02Trunc(double jd){
         double longitude_moon_appr = Moon.Elpmpp02Trunc.apparentGeocentricLongitude(jd);
         double latitude_moon_appr = Moon.Elpmpp02Trunc.apparentGeocentricLatitude(jd);
         double rightAscension_moon= Moon.Elpmpp02Trunc.apparentRightAscension(jd);
@@ -228,7 +232,7 @@ public class Main {
 //        printDigit("Fraction Illumination",fractionillumination_moon,5);
     }
 
-    static void elp2000Method(double jd){
+    static void metodeElp2000(double jd){
         double longitude_moon_appr = Moon.Elp2000.apparentGeocentricLongitude(jd);
         double latitude_moon_appr = Moon.Elp2000.apparentGeocentricLatitude(jd);
         double rightAscension_moon= Moon.Elp2000.apparentRightAscension(jd);

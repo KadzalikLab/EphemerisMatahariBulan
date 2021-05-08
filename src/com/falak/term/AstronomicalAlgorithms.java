@@ -1,6 +1,6 @@
 package com.falak.term;
 
-public class MeeusTerm {
+public class AstronomicalAlgorithms {
 
         public static double earthHeliocentricLongitude(double tau){
             double l0=0;

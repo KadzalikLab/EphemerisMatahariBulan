@@ -7,7 +7,7 @@ package com.falak.term;
  * @see <a href=" https://en.wikipedia.org/wiki/VSOP_(planets)#VSOP87"> https://en.wikipedia.org/wiki/VSOP_(planets)#VSOP87 </a>
  * @since 2021-04-13
  */
-public class Vsop87Term {
+public class Vsop87 {
 
     public static double earthHeliocentricLongitude(double tau){
         double l1=0;

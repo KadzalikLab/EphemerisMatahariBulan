@@ -1,14 +1,14 @@
 package com.falak.term;
 
-public class Nutasi {
+public class Nutation {
 
     public static  double epsilon(double t){
-        return  deltaPsiDanEpsilon(t)[6];
+        return  deltaPsiDanEpsilon(t)[2];
 
     }
 
     public static  double deltaPsi(double t){
-        return  deltaPsiDanEpsilon(t)[2];
+        return  deltaPsiDanEpsilon(t)[1];
 
     }
 
@@ -93,48 +93,48 @@ public class Nutasi {
         double epsilonZero=23+(double)26/60+21.448/3600+(-4680.93*u-1.55*u*u+1999.25*u*u*u-51.38*u*u*u*u-249.67*u*u*u*u*u-39.05*u*u*u*u*u*u+7.12*u*u*u*u*u*u*u+27.87*u*u*u*u*u*u*u*u+5.79*u*u*u*u*u*u*u*u*u+2.45*u*u*u*u*u*u*u*u*u*u)/3600;
         double deltaEpsilon=0;
         deltaEpsilon+=(92025+8.9*t)*Math.cos(0*d+0*m+0*m1+0*f+1*omega);
-deltaEpsilon+=(5736+-3.1*t)*Math.cos(-2*d+0*m+0*m1+2*f+2*omega);
-deltaEpsilon+=(977+-0.5*t)*Math.cos(0*d+0*m+0*m1+2*f+2*omega);
-deltaEpsilon+=(-895+0.5*t)*Math.cos(0*d+0*m+0*m1+0*f+2*omega);
-deltaEpsilon+=(54+-0.1*t)*Math.cos(0*d+1*m+0*m1+0*f+0*omega);
-deltaEpsilon+=(224+-0.6*t)*Math.cos(-2*d+1*m+0*m1+2*f+2*omega);
-deltaEpsilon+=(129+-0.1*t)*Math.cos(0*d+0*m+1*m1+2*f+2*omega);
-deltaEpsilon+=(-95+0.3*t)*Math.cos(-2*d+-1*m+0*m1+2*f+2*omega);
-deltaEpsilon+=(-7+0*t)*Math.cos(0*d+0*m+1*m1+0*f+0*omega);
-deltaEpsilon+=(200+0*t)*Math.cos(0*d+0*m+0*m1+2*f+1*omega);
-deltaEpsilon+=(-70+0*t)*Math.cos(-2*d+0*m+0*m1+2*f+1*omega);
-deltaEpsilon+=(-53+0*t)*Math.cos(0*d+0*m+-1*m1+2*f+2*omega);
-deltaEpsilon+=(-33+0*t)*Math.cos(0*d+0*m+1*m1+0*f+1*omega);
-deltaEpsilon+=(26+0*t)*Math.cos(2*d+0*m+-1*m1+2*f+2*omega);
-deltaEpsilon+=(32+0*t)*Math.cos(0*d+0*m+-1*m1+0*f+1*omega);
-deltaEpsilon+=(27+0*t)*Math.cos(0*d+0*m+1*m1+2*f+1*omega);
-deltaEpsilon+=(-24+0*t)*Math.cos(0*d+0*m+-2*m1+2*f+1*omega);
-deltaEpsilon+=(16+0*t)*Math.cos(2*d+0*m+0*m1+2*f+2*omega);
-deltaEpsilon+=(13+0*t)*Math.cos(0*d+0*m+2*m1+2*f+2*omega);
-deltaEpsilon+=(-12+0*t)*Math.cos(-2*d+0*m+1*m1+2*f+2*omega);
-deltaEpsilon+=(-10+0*t)*Math.cos(0*d+0*m+-1*m1+2*f+1*omega);
-deltaEpsilon+=(-8+0*t)*Math.cos(2*d+0*m+-1*m1+0*f+1*omega);
-deltaEpsilon+=(7+0*t)*Math.cos(-2*d+-2*m+0*m1+2*f+2*omega);
-deltaEpsilon+=(9+0*t)*Math.cos(0*d+1*m+0*m1+0*f+1*omega);
-deltaEpsilon+=(7+0*t)*Math.cos(-2*d+0*m+1*m1+0*f+1*omega);
-deltaEpsilon+=(6+0*t)*Math.cos(0*d+-1*m+0*m1+0*f+1*omega);
-deltaEpsilon+=(5+0*t)*Math.cos(2*d+0*m+-1*m1+2*f+1*omega);
-deltaEpsilon+=(3+0*t)*Math.cos(2*d+0*m+1*m1+2*f+2*omega);
-deltaEpsilon+=(-3+0*t)*Math.cos(0*d+1*m+0*m1+2*f+2*omega);
-deltaEpsilon+=(3+0*t)*Math.cos(0*d+-1*m+0*m1+2*f+2*omega);
-deltaEpsilon+=(3+0*t)*Math.cos(2*d+0*m+0*m1+2*f+1*omega);
-deltaEpsilon+=(-3+0*t)*Math.cos(-2*d+0*m+2*m1+2*f+2*omega);
-deltaEpsilon+=(-3+0*t)*Math.cos(-2*d+0*m+1*m1+2*f+1*omega);
-deltaEpsilon+=(3+0*t)*Math.cos(2*d+0*m+-2*m1+0*f+1*omega);
-deltaEpsilon+=(3+0*t)*Math.cos(2*d+0*m+0*m1+0*f+1*omega);
-deltaEpsilon+=(3+0*t)*Math.cos(-2*d+-1*m+0*m1+2*f+1*omega);
-deltaEpsilon+=(3+0*t)*Math.cos(-2*d+0*m+0*m1+0*f+1*omega);
-deltaEpsilon+=(3+0*t)*Math.cos(0*d+0*m+2*m1+2*f+1*omega);
-deltaEpsilon/=10000;
-double deltaEpsilon_d=deltaEpsilon/3600;
-double epsilon=epsilonZero+deltaEpsilon_d;
+        deltaEpsilon+=(5736+-3.1*t)*Math.cos(-2*d+0*m+0*m1+2*f+2*omega);
+        deltaEpsilon+=(977+-0.5*t)*Math.cos(0*d+0*m+0*m1+2*f+2*omega);
+        deltaEpsilon+=(-895+0.5*t)*Math.cos(0*d+0*m+0*m1+0*f+2*omega);
+        deltaEpsilon+=(54+-0.1*t)*Math.cos(0*d+1*m+0*m1+0*f+0*omega);
+        deltaEpsilon+=(224+-0.6*t)*Math.cos(-2*d+1*m+0*m1+2*f+2*omega);
+        deltaEpsilon+=(129+-0.1*t)*Math.cos(0*d+0*m+1*m1+2*f+2*omega);
+        deltaEpsilon+=(-95+0.3*t)*Math.cos(-2*d+-1*m+0*m1+2*f+2*omega);
+        deltaEpsilon+=(-7+0*t)*Math.cos(0*d+0*m+1*m1+0*f+0*omega);
+        deltaEpsilon+=(200+0*t)*Math.cos(0*d+0*m+0*m1+2*f+1*omega);
+        deltaEpsilon+=(-70+0*t)*Math.cos(-2*d+0*m+0*m1+2*f+1*omega);
+        deltaEpsilon+=(-53+0*t)*Math.cos(0*d+0*m+-1*m1+2*f+2*omega);
+        deltaEpsilon+=(-33+0*t)*Math.cos(0*d+0*m+1*m1+0*f+1*omega);
+        deltaEpsilon+=(26+0*t)*Math.cos(2*d+0*m+-1*m1+2*f+2*omega);
+        deltaEpsilon+=(32+0*t)*Math.cos(0*d+0*m+-1*m1+0*f+1*omega);
+        deltaEpsilon+=(27+0*t)*Math.cos(0*d+0*m+1*m1+2*f+1*omega);
+        deltaEpsilon+=(-24+0*t)*Math.cos(0*d+0*m+-2*m1+2*f+1*omega);
+        deltaEpsilon+=(16+0*t)*Math.cos(2*d+0*m+0*m1+2*f+2*omega);
+        deltaEpsilon+=(13+0*t)*Math.cos(0*d+0*m+2*m1+2*f+2*omega);
+        deltaEpsilon+=(-12+0*t)*Math.cos(-2*d+0*m+1*m1+2*f+2*omega);
+        deltaEpsilon+=(-10+0*t)*Math.cos(0*d+0*m+-1*m1+2*f+1*omega);
+        deltaEpsilon+=(-8+0*t)*Math.cos(2*d+0*m+-1*m1+0*f+1*omega);
+        deltaEpsilon+=(7+0*t)*Math.cos(-2*d+-2*m+0*m1+2*f+2*omega);
+        deltaEpsilon+=(9+0*t)*Math.cos(0*d+1*m+0*m1+0*f+1*omega);
+        deltaEpsilon+=(7+0*t)*Math.cos(-2*d+0*m+1*m1+0*f+1*omega);
+        deltaEpsilon+=(6+0*t)*Math.cos(0*d+-1*m+0*m1+0*f+1*omega);
+        deltaEpsilon+=(5+0*t)*Math.cos(2*d+0*m+-1*m1+2*f+1*omega);
+        deltaEpsilon+=(3+0*t)*Math.cos(2*d+0*m+1*m1+2*f+2*omega);
+        deltaEpsilon+=(-3+0*t)*Math.cos(0*d+1*m+0*m1+2*f+2*omega);
+        deltaEpsilon+=(3+0*t)*Math.cos(0*d+-1*m+0*m1+2*f+2*omega);
+        deltaEpsilon+=(3+0*t)*Math.cos(2*d+0*m+0*m1+2*f+1*omega);
+        deltaEpsilon+=(-3+0*t)*Math.cos(-2*d+0*m+2*m1+2*f+2*omega);
+        deltaEpsilon+=(-3+0*t)*Math.cos(-2*d+0*m+1*m1+2*f+1*omega);
+        deltaEpsilon+=(3+0*t)*Math.cos(2*d+0*m+-2*m1+0*f+1*omega);
+        deltaEpsilon+=(3+0*t)*Math.cos(2*d+0*m+0*m1+0*f+1*omega);
+        deltaEpsilon+=(3+0*t)*Math.cos(-2*d+-1*m+0*m1+2*f+1*omega);
+        deltaEpsilon+=(3+0*t)*Math.cos(-2*d+0*m+0*m1+0*f+1*omega);
+        deltaEpsilon+=(3+0*t)*Math.cos(0*d+0*m+2*m1+2*f+1*omega);
+        deltaEpsilon/=10000;
+        double deltaEpsilon_d=deltaEpsilon/3600;
+        double epsilon=epsilonZero+deltaEpsilon_d;
 
-        return new double[]{0,deltaPsi,deltaPsi_d,u,epsilonZero,deltaEpsilon,epsilon};
+        return new double[]{0,deltaPsi_d,epsilon};
 
     }
 }

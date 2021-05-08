@@ -1,7 +1,7 @@
 package com.falak.term.elpmpp02;
 
 
-public class ElpMpp02Term {
+public class ElpMpp02 {
 
     public static  double koreksiLongitude(double t1,double t2,double t3,double t4 ){
 

@@ -1,6 +1,6 @@
 package com.falak.term;
 
-public class ElpMpp02TruncTerm {
+public class ElpMpp02Trunc {
     public  static  double meanLongitude(double T){
         return main(T)[1];
     }

@@ -4,58 +4,58 @@ package com.falak;
 public class Moon {
 
 
-    static class Meeus{
+    static class AstroAlgo {
         static double trueGeocentricLongitude(double jd){
-            return  Calculation.meeus(jd)[11];
+            return  Calculation.astroAlgo(jd)[11];
         }
 
         static double apparentGeocentricLongitude (double jd){
-            return  Calculation.meeus(jd)[12]; }
+            return  Calculation.astroAlgo(jd)[12]; }
 
         static double apparentGeocentricLatitude(double jd){
-            return  Calculation.meeus(jd)[13];
+            return  Calculation.astroAlgo(jd)[13];
         }
 
 
 
         static double apparentRightAscension (double jd){
-            return  Calculation.meeus(jd)[14];
+            return  Calculation.astroAlgo(jd)[14];
         }
 
 
         static double apparentDeclination(double jd){
-            return  Calculation.meeus(jd)[15];
+            return  Calculation.astroAlgo(jd)[15];
         }
 
 
         static double trueGeocentricDistance(double jd){
-            return  Calculation.meeus(jd)[16];
+            return  Calculation.astroAlgo(jd)[16];
         }
 
 
         static double angularSemiDiameter (double jd){
-            return  Calculation.meeus(jd)[17];
+            return  Calculation.astroAlgo(jd)[17];
         }
 
 
         static double equatorialHorizontalParallax (double jd){
-            return  Calculation.meeus(jd)[18];
+            return  Calculation.astroAlgo(jd)[18];
         }
 
         static double diskIlluminatedFraction (double jd){
-            return  Calculation.meeus(jd)[19];
+            return  Calculation.astroAlgo(jd)[19];
         }
 
 
         static double brightLimbAngle(double jd){
-            return  Calculation.meeus(jd)[20];
+            return  Calculation.astroAlgo(jd)[20];
         }
 
 
         static double sunGeocentricElongation(double jd){
             double deltaSun,alphaSun,deltaMoon,alphaMoon,psi;
-            deltaSun = Sun.Meeus.apparentDeclination(jd);
-            alphaSun = Sun.Meeus.apparentRightAscension(jd);
+            deltaSun = Sun.AstroAlgo.apparentDeclination(jd);
+            alphaSun = Sun.AstroAlgo.apparentRightAscension(jd);
             deltaMoon = apparentDeclination(jd);
             alphaMoon = apparentRightAscension(jd);
             psi = Math.toDegrees(Math.acos(Math.sin(Math.toRadians(deltaSun))*Math.sin(Math.toRadians(deltaMoon))+Math.cos(Math.toRadians(deltaSun))*Math.cos(Math.toRadians(deltaMoon))*Math.cos(Math.toRadians(alphaSun-alphaMoon))));

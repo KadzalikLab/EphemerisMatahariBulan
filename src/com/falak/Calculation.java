@@ -1,18 +1,18 @@
 package com.falak;
 
 import com.falak.term.*;
-import com.falak.term.elpmpp02.ElpMpp02Term;
+import com.falak.term.elpmpp02.ElpMpp02;
 
 public class Calculation {
 
-    public static double[] meeus(double jd) {
+    public static double[] astroAlgo(double jd) {
 
         double T = (jd - 2451545) / 36525;
         double tau = T / 10;
 
-        double deltaPsi = Nutasi.deltaPsi(T);
+        double deltaPsi = Nutation.deltaPsi(T);
 
-        double epsilon = Nutasi.epsilon(T);  //Obliquity / kemiringan bumi
+        double epsilon = Nutation.epsilon(T);  //Obliquity / kemiringan bumi
         double epsilon_r = Math.toRadians(epsilon);
 
         // bujur rata-rata bulan
@@ -46,7 +46,7 @@ public class Calculation {
         double aA2_r = Math.toRadians(argumenA2);
         double aA3_r = Math.toRadians(argumenA3);
 
-        double L_moon = MeeusTerm.moonGeocentricLongitude(T);//hasil dari penjumlahan suku periodik lon bulan
+        double L_moon = AstronomicalAlgorithms.moonGeocentricLongitude(T);//hasil dari penjumlahan suku periodik lon bulan
         double koreksibujurB = (L_moon + 3958 * Math.sin(aA1_r) + 1962 * Math.sin(Math.toRadians(mean_longitude_moon) - f_r) + 318 * Math.sin(aA2_r)) / 1000000;
 
         //Koreksi bujur bulan
@@ -56,12 +56,12 @@ public class Calculation {
         double bujurB_nampak_r = Math.toRadians(apparent_longitude_moon);
 
         //Koreksi lintang bulan
-        double latitude_moon = MeeusTerm.moonGeocentricLatitude(e, d_r, m_r, ma_r, f_r, Math.toRadians(mean_longitude_moon), aA1_r, aA3_r);
+        double latitude_moon = AstronomicalAlgorithms.moonGeocentricLatitude(e, d_r, m_r, ma_r, f_r, Math.toRadians(mean_longitude_moon), aA1_r, aA3_r);
         double latitude_moon_rad = Math.toRadians(latitude_moon);
 
 
         //Koreksi jarak bumi-bulan
-        double koreksiJarakBumiBumi = MeeusTerm.moonGeocentricDistance(e, d_r, m_r, ma_r, f_r);
+        double koreksiJarakBumiBumi = AstronomicalAlgorithms.moonGeocentricDistance(e, d_r, m_r, ma_r, f_r);
         double moonEarth_distance = 385000.56 + koreksiJarakBumiBumi; //KM
 
         double horizontalParallax_moon = Math.toDegrees(Math.asin(6378.14 / moonEarth_distance)); //EquatorialHorizontalParallax
@@ -78,18 +78,18 @@ public class Calculation {
 
 
         //Matahari
-        double L_sun = MeeusTerm.earthHeliocentricLongitude(tau); //hasil penumlahan koreksi l0+l1+l2 dst
+        double L_sun = AstronomicalAlgorithms.earthHeliocentricLongitude(tau); //hasil penumlahan koreksi l0+l1+l2 dst
         double theta = (L_sun + 180) % 360;
         double deltaTheta = -0.09033 / 3600;
         double true_longitude_sun = (theta + deltaTheta) % 360; //theta terkoreksi //bujur matahari yang sudah terkoreksi
 
-        double sunEarth_distance = MeeusTerm.earthRadiusVector(tau);
+        double sunEarth_distance = AstronomicalAlgorithms.earthRadiusVector(tau);
         double jarakBm_Mat_AU = 149598000 * sunEarth_distance; //AU
 
         double lambda1 = (theta - 1.397 * koreksibujurB - 0.00031 * koreksibujurB * koreksibujurB) % 360; // Lambda'
         double lambda1_rad = Math.toRadians(lambda1);
 
-        double B = MeeusTerm.earthHeliocentricLatitude(tau); // hasil total koreksi B
+        double B = AstronomicalAlgorithms.earthHeliocentricLatitude(tau); // hasil total koreksi B
         double beta = -B;
         double deltaBeta = 0.03916 * (Math.cos(lambda1_rad) - Math.sin(lambda1_rad));
         double latitude_sun = beta + deltaBeta; //beta Terkoreksi //lintang matahari, apparent (?)
@@ -153,25 +153,24 @@ public class Calculation {
         double T = (jd - 2451545) / 36525;
         double tau = T / 10;
 
-        double deltaPsi = Nutasi.deltaPsi(T);
+        double deltaPsi = Nutation.deltaPsi(T);
 
-        double epsilon = Nutasi.epsilon(T);  //Obliquity / kemiringan bumi
+        double epsilon = Nutation.epsilon(T);  //Obliquity / kemiringan bumi
         double epsilon_r = Math.toRadians(epsilon);
 
-
         //Matahari
-        double L_sun = Vsop87Term.earthHeliocentricLongitude(tau); //hasil penumlahan koreksi l0+l1+l2 dst
+        double L_sun = Vsop87.earthHeliocentricLongitude(tau); //hasil penumlahan koreksi l0+l1+l2 dst
         double theta = (L_sun + 180) % 360;
         double deltaTheta = -0.09033 / 3600;
         double true_longitude_sun = (theta + deltaTheta) % 360; //theta terkoreksi //bujur matahari yang sudah terkoreksi
 
-        double sunEarth_distance = Vsop87Term.earthRadiusVector(tau);
+        double sunEarth_distance = Vsop87.earthRadiusVector(tau);
         double sunEarth_distance_AU = 149598000 * sunEarth_distance; //AU
 
         double lambda1 = (theta - 1.397 * T - 0.00031 * T * T) % 360; // Lambda'
         double lambda1_rad = Math.toRadians(lambda1);
 
-        double B = Vsop87Term.earthHeliocentricLatitude(tau); // hasil total koreksi B
+        double B = Vsop87.earthHeliocentricLatitude(tau); // hasil total koreksi B
         double beta = -B;
         double deltaBeta = 0.03916 * (Math.cos(lambda1_rad) - Math.sin(lambda1_rad));
         double latitude_sun = (beta + deltaBeta) / 3600; //beta Terkoreksi //lintang matahari, apparent (?)
@@ -216,16 +215,16 @@ public class Calculation {
 
 
 
-        double epsilon = Nutasi.deltaPsiDanEpsilon(T)[6]; //Obliquity / kemiringan bumi
+        double epsilon = Nutation.epsilon(T); //Obliquity / kemiringan bumi
         double epsilon_r = Math.toRadians(epsilon);
 
 
         double t0,t1,t2,t3,t4;
         t0=1; t1=t0*T; t2=t1*T; t3=t2*T; t4=t3*T;
-        double mean_longitude_moon = ElpMpp02Term.meanLongitude(t1,t2,t3,t4);
+        double mean_longitude_moon = ElpMpp02.meanLongitude(t1,t2,t3,t4);
 
-        double koreksibujurB = ElpMpp02Term.koreksiLongitude(t1,t2,t3,t4);
-        double deltaPsi = Nutasi.deltaPsiDanEpsilon(T)[2];
+        double koreksibujurB = ElpMpp02.koreksiLongitude(t1,t2,t3,t4);
+        double deltaPsi = Nutation.deltaPsi(T);
 
         //Koreksi bujur bulan
         double true_longitude_moon = (mean_longitude_moon + koreksibujurB) % 360;
@@ -235,11 +234,11 @@ public class Calculation {
         double bujurB_nampak_r = Math.toRadians(apparent_longitude_moon);
 
         //Koreksi lintang bulan
-        double latitude_moon = ElpMpp02Term.latitude(t1,t2,t3,t4);
+        double latitude_moon = ElpMpp02.latitude(t1,t2,t3,t4);
         double lintangB_r = Math.toRadians(latitude_moon);
 
         //Koreksi jarak bumi-bulan
-        double moonEarth_distance = ElpMpp02Term.range(t1,t2,t3,t4);
+        double moonEarth_distance = ElpMpp02.range(t1,t2,t3,t4);
 
 
         double horizontalParallax_moon = Math.toDegrees(Math.asin(6378.14 / moonEarth_distance));
@@ -289,13 +288,13 @@ public class Calculation {
 
 
         double T = (jd - 2451545) / 36525;
-        double epsilon = Nutasi.deltaPsiDanEpsilon(T)[6]; //Obliquity / kemiringan bumi
+        double epsilon = Nutation.epsilon(T); //Obliquity / kemiringan bumi
         double epsilon_r = Math.toRadians(epsilon);
 
 
-        double mean_longitude_moon = ElpMpp02TruncTerm.meanLongitude(T);
-        double koreksibujurB = ElpMpp02TruncTerm.koreksiLongitude(T);
-        double deltaPsi = Nutasi.deltaPsiDanEpsilon(T)[2];
+        double mean_longitude_moon = ElpMpp02Trunc.meanLongitude(T);
+        double koreksibujurB = ElpMpp02Trunc.koreksiLongitude(T);
+        double deltaPsi = Nutation.deltaPsi(T);
 
         //Koreksi bujur bulan
         double true_longitude_moon = (mean_longitude_moon + koreksibujurB) % 360;
@@ -305,11 +304,11 @@ public class Calculation {
         double bujurB_nampak_r = Math.toRadians(apparent_longitude_moon);
 
         //Koreksi lintang bulan
-        double latitude_moon = ElpMpp02TruncTerm.latitude(T);
+        double latitude_moon = ElpMpp02Trunc.latitude(T);
         double lintangB_r = Math.toRadians(latitude_moon);
 
         //Koreksi jarak bumi-bulan
-        double moonEarth_distance = ElpMpp02TruncTerm.range(T);
+        double moonEarth_distance = ElpMpp02Trunc.range(T);
 
 
         double horizontalParallax_moon = Math.toDegrees(Math.asin(6378.14 / moonEarth_distance));
@@ -360,12 +359,12 @@ public class Calculation {
 
 
         double T = (jd - 2451545) / 36525;
-        double epsilon = Nutasi.deltaPsiDanEpsilon(T)[6]; //Obliquity / kemiringan bumi
+        double epsilon = Nutation.epsilon(T); //Obliquity / kemiringan bumi
         double epsilon_r = Math.toRadians(epsilon);
 
         double mean_longitude_moon = (218.3164591+481267.88134236*T-0.0013268*T*T+T*T*T/538841-T*T*T*T/65194000)%360;
         double koreksibujurB = Elp2000.longitude(T);
-        double deltaPsi = Nutasi.deltaPsiDanEpsilon(T)[2];
+        double deltaPsi = Nutation.deltaPsi(T);
 
         //Koreksi bujur bulan
         double true_longitude_moon = (mean_longitude_moon + koreksibujurB) % 360;
