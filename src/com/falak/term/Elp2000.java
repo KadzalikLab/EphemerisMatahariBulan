@@ -1,10 +1,12 @@
 package com.falak.term;
 
 public class Elp2000 {
-   /*  Di Ambil dari file Elp.ode (Accurate Time) */
-    public static double longitude(double T ){
-        double L=0;
-        L = + 6.28877383 * Math.sin(Math.toRadians(134.9634114 + 477198.8676 * T + 89.97 * 0.0001 * T + 14.348 * 0.000001 * T * T + -6.797 * 0.00000001 * T * T * T * T));
+    /**
+     * Term Elp2000 Moon diambil dari folder aplikasi <a href="http://www.icoproject.org/accut.html?l=en">Accurate Times </a> file Elp.ode
+     */
+    public static double longitude(double T) {
+        double L = 0;
+        L = +6.28877383 * Math.sin(Math.toRadians(134.9634114 + 477198.8676 * T + 89.97 * 0.0001 * T + 14.348 * 0.000001 * T * T + -6.797 * 0.00000001 * T * T * T * T));
         L += 1.27401064 * Math.sin(Math.toRadians(100.736997 + 413335.3554 * T + -122.571 * 0.0001 * T + -10.684 * 0.000001 * T * T + 5.028 * 0.00000001 * T * T * T * T));
         L += 0.65830943 * Math.sin(Math.toRadians(235.7004084 + 890534.223 * T + -32.601 * 0.0001 * T + 3.664 * 0.000001 * T * T + -1.769 * 0.00000001 * T * T * T * T));
         L += 0.21361825 * Math.sin(Math.toRadians(269.9268228 + 954397.7353 * T + 179.941 * 0.0001 * T + 28.695 * 0.000001 * T * T + -13.594 * 0.00000001 * T * T * T * T));
@@ -223,7 +225,7 @@ public class Elp2000 {
         L += -0.00000295 * Math.sin(Math.toRadians(121.9698253 + 846596.1671 * T + 109.128 * 0.0001 * T + 20.411 * 0.000001 * T * T + -9.682 * 0.00000001 * T * T * T * T));
         L += -0.0000028 * Math.sin(Math.toRadians(334.6423206 + 2775336.943 * T + 80.817 * 0.0001 * T + 31.751 * 0.000001 * T * T + -15.132 * 0.00000001 * T * T * T * T));
 
-        double L01=0;
+        double L01 = 0;
         L01 += 3.95801 * Math.sin(Math.toRadians(119.7524 + 131.8489 * T));
         L01 += 1.96196 * Math.sin(Math.toRadians(125.0455 + -1934.1362 * T));
         L01 += -0.31752 * Math.sin(Math.toRadians(233.0867 + 479264.2898 * T));
@@ -469,7 +471,7 @@ public class Elp2000 {
         L01 += -0.00283 * Math.sin(Math.toRadians(171.5956 + -931879.2924 * T));
         L01 += -0.00283 * Math.sin(Math.toRadians(346.5619 + -619.7521 * T));
 
-        double L02=0;
+        double L02 = 0;
         L02 += 0.46578 * Math.sin(Math.toRadians(357.529 + 35999.05 * T));
         L02 += -0.14345 * Math.sin(Math.toRadians(103.208 + 377336.305 * T));
         L02 += -0.11495 * Math.sin(Math.toRadians(238.171 + 854535.173 * T));
@@ -627,41 +629,41 @@ public class Elp2000 {
 
 
         double L03 = 0;
-        L03+= 13.53 * Math.sin(Math.toRadians(357.5 + 35999.1 * T));
-        L03+= -4.17 * Math.sin(Math.toRadians(103.2 + 377336.3 * T));
-        L03+= -3.33 * Math.sin(Math.toRadians(238.2 + 854535.2 * T));
-        L03+= 3 * Math.sin(Math.toRadians(222.6 + -441199.8 * T));
-        L03+= 2.22 * Math.sin(Math.toRadians(132.5 + 513197.9 * T));
-        L03+= 0.58 * Math.sin(Math.toRadians(98.3 + 449334.4 * T));
-        L03+= 0.5 * Math.sin(Math.toRadians(233.2 + 926533.3 * T));
-        L03+= -0.36 * Math.sin(Math.toRadians(295.4 + 481266.2 * T));
-        L03+= -0.33 * Math.sin(Math.toRadians(240.6 + 818536.1 * T));
-        L03+= -0.31 * Math.sin(Math.toRadians(13.1 + 1331734 * T));
-        L03+= -0.31 * Math.sin(Math.toRadians(105.7 + 341337.3 * T));
-        L03+= 0.31 * Math.sin(Math.toRadians(355.1 + 71998.1 * T));
-        L03+= 0.19 * Math.sin(Math.toRadians(87.6 + -918398.7 * T));
-        L03+= -0.17 * Math.sin(Math.toRadians(328.2 + -99862.6 * T));
-        L03+= 0.17 * Math.sin(Math.toRadians(267.5 + 990396.8 * T));
-        L03+= 0.11 * Math.sin(Math.toRadians(95.8 + 485333.5 * T));
-        L03+= 0.11 * Math.sin(Math.toRadians(220.1 + -405200.8 * T));
-        L03+= -0.08 * Math.sin(Math.toRadians(338.9 + 1267870.5 * T));
-        L03+= 0.08 * Math.sin(Math.toRadians(235.7 + 890534.2 * T));
-        L03+= -0.06 * Math.sin(Math.toRadians(203.9 + 790671.7 * T));
-        L03+= -0.06 * Math.sin(Math.toRadians(323.3 + -27864.5 * T));
-        L03+= -0.06 * Math.sin(Math.toRadians(51.6 + -111868.9 * T));
-        L03+= 0.06 * Math.sin(Math.toRadians(8.2 + 1403732.1 * T));
-        L03+= 0.06 * Math.sin(Math.toRadians(100.7 + 413335.4 * T));
-        L03+= 0.06 * Math.sin(Math.toRadians(130 + 549197 * T));
+        L03 += 13.53 * Math.sin(Math.toRadians(357.5 + 35999.1 * T));
+        L03 += -4.17 * Math.sin(Math.toRadians(103.2 + 377336.3 * T));
+        L03 += -3.33 * Math.sin(Math.toRadians(238.2 + 854535.2 * T));
+        L03 += 3 * Math.sin(Math.toRadians(222.6 + -441199.8 * T));
+        L03 += 2.22 * Math.sin(Math.toRadians(132.5 + 513197.9 * T));
+        L03 += 0.58 * Math.sin(Math.toRadians(98.3 + 449334.4 * T));
+        L03 += 0.5 * Math.sin(Math.toRadians(233.2 + 926533.3 * T));
+        L03 += -0.36 * Math.sin(Math.toRadians(295.4 + 481266.2 * T));
+        L03 += -0.33 * Math.sin(Math.toRadians(240.6 + 818536.1 * T));
+        L03 += -0.31 * Math.sin(Math.toRadians(13.1 + 1331734 * T));
+        L03 += -0.31 * Math.sin(Math.toRadians(105.7 + 341337.3 * T));
+        L03 += 0.31 * Math.sin(Math.toRadians(355.1 + 71998.1 * T));
+        L03 += 0.19 * Math.sin(Math.toRadians(87.6 + -918398.7 * T));
+        L03 += -0.17 * Math.sin(Math.toRadians(328.2 + -99862.6 * T));
+        L03 += 0.17 * Math.sin(Math.toRadians(267.5 + 990396.8 * T));
+        L03 += 0.11 * Math.sin(Math.toRadians(95.8 + 485333.5 * T));
+        L03 += 0.11 * Math.sin(Math.toRadians(220.1 + -405200.8 * T));
+        L03 += -0.08 * Math.sin(Math.toRadians(338.9 + 1267870.5 * T));
+        L03 += 0.08 * Math.sin(Math.toRadians(235.7 + 890534.2 * T));
+        L03 += -0.06 * Math.sin(Math.toRadians(203.9 + 790671.7 * T));
+        L03 += -0.06 * Math.sin(Math.toRadians(323.3 + -27864.5 * T));
+        L03 += -0.06 * Math.sin(Math.toRadians(51.6 + -111868.9 * T));
+        L03 += 0.06 * Math.sin(Math.toRadians(8.2 + 1403732.1 * T));
+        L03 += 0.06 * Math.sin(Math.toRadians(100.7 + 413335.4 * T));
+        L03 += 0.06 * Math.sin(Math.toRadians(130 + 549197 * T));
 
-        double lamdaB =  L + 0.001 * (L01 + L02 * T + 0.0001 * L03 * T * T);
+        double lamdaB = L + 0.001 * (L01 + L02 * T + 0.0001 * L03 * T * T);
 
         return lamdaB;
     }
 
 
-    public static double radius(double T){
+    public static double radius(double T) {
 
-        double R=0;
+        double R = 0;
 
         R += -20905.355 * Math.cos(Math.toRadians(134.9634114 + 477198.8676 * T + 89.97 * 0.0001 * T + 14.348 * 0.000001 * T * T + -6.797 * 0.00000001 * T * T * T * T));
         R += -3699.1109 * Math.cos(Math.toRadians(100.736997 + 413335.3554 * T + -122.571 * 0.0001 * T + -10.684 * 0.000001 * T * T + 5.028 * 0.00000001 * T * T * T * T));
@@ -818,7 +820,7 @@ public class Elp2000 {
         R += -0.0208 * Math.cos(Math.toRadians(23.7985304 + 2699467.131 * T + 116.275 * 0.0001 * T + 35.982 * 0.000001 * T * T + -17.132 * 0.00000001 * T * T * T * T));
         R += -0.0201 * Math.cos(Math.toRadians(17.3543729 + 425341.6552 * T + -370.57 * 0.0001 * T + -39.946 * 0.000001 * T * T + 18.854 * 0.00000001 * T * T * T * T));
 
-        double R01=0;
+        double R01 = 0;
 
         R01 += 1.0587 * Math.cos(Math.toRadians(233.0866 + 479264.2898 * T));
         R01 += 0.7278 * Math.cos(Math.toRadians(344.7895 + -477067.0188 * T));
@@ -935,7 +937,7 @@ public class Elp2000 {
         R01 += -0.0211 * Math.cos(Math.toRadians(319.7423 + 489928.1967 * T));
         R01 += -0.0201 * Math.cos(Math.toRadians(15.3412 + -821570.383 * T));
 
-        double R02=0;
+        double R02 = 0;
         R02 += 0.514 * Math.cos(Math.toRadians(238.171 + 854535.173 * T));
         R02 += 0.3825 * Math.cos(Math.toRadians(103.208 + 377336.305 * T));
         R02 += 0.3265 * Math.cos(Math.toRadians(222.566 + -441199.817 * T));
@@ -1006,11 +1008,7 @@ public class Elp2000 {
         R02 += -0.0006 * Math.cos(Math.toRadians(199.003 + 862669.761 * T));
 
 
-
-
-
-
-        double R03=0;
+        double R03 = 0;
         R03 += 14.9 * Math.cos(Math.toRadians(238.2 + 854535.2 * T));
         R03 += 11.1 * Math.cos(Math.toRadians(103.2 + 377336.3 * T));
         R03 += 9.5 * Math.cos(Math.toRadians(222.6 + -441199.8 * T));
@@ -1030,17 +1028,15 @@ public class Elp2000 {
         R03 += -0.3 * Math.cos(Math.toRadians(95.8 + 485333.5 * T));
         R03 += 0.3 * Math.cos(Math.toRadians(220.1 + -405200.8 * T));
         R03 += -0.2 * Math.cos(Math.toRadians(8.2 + 1403732.1 * T));
-        double jarak =  385000.57 + R + R01 + R02 * T + R03 * T * T / 10000;
-
-
+        double jarak = 385000.57 + R + R01 + R02 * T + R03 * T * T / 10000;
 
 
         return jarak;
     }
 
-    public static  double latitude(double T){
+    public static double latitude(double T) {
 
-        double B=0;
+        double B = 0;
         B += 5.12812186 * Math.sin(Math.toRadians(93.2720993 + 483202.0175 * T + -34.029 * 0.0001 * T + -0.284 * 0.000001 * T * T + 0.116 * 0.00000001 * T * T * T * T));
         B += 0.28060196 * Math.sin(Math.toRadians(228.2355107 + 960400.8852 * T + 55.941 * 0.0001 * T + 14.064 * 0.000001 * T * T + -6.681 * 0.00000001 * T * T * T * T));
         B += 0.27769266 * Math.sin(Math.toRadians(41.6913121 + -6003.149896 * T + 123.999 * 0.0001 * T + 14.631 * 0.000001 * T * T + -6.913 * 0.00000001 * T * T * T * T));
@@ -1230,7 +1226,7 @@ public class Elp2000 {
         B += 0.00000282 * Math.sin(Math.toRadians(298.5782355 + 1918865.915 * T + 128.075 * 0.0001 * T + 30.284 * 0.000001 * T * T + -14.363 * 0.00000001 * T * T * T * T));
         B += -0.0000028 * Math.sin(Math.toRadians(253.7343146 + -113804.718 * T + 53.187 * 0.0001 * T + 6.347 * 0.000001 * T * T + -3.001 * 0.00000001 * T * T * T * T));
 
-        double B01=0;
+        double B01 = 0;
         B01 += -2.23474 * Math.sin(Math.toRadians(218.3174 + 481267.8813 * T));
         B01 += 0.4195 * Math.sin(Math.toRadians(314.9967 + 481266.4844 * T));
         B01 += 0.1751 * Math.sin(Math.toRadians(213.0248 + 483333.8664 * T));
@@ -1296,7 +1292,7 @@ public class Elp2000 {
         B01 += -0.00283 * Math.sin(Math.toRadians(158.2395 + 476823.0671 * T));
         B01 += 0.00279 * Math.sin(Math.toRadians(267.4739 + 405398.0693 * T));
 
-        double B02=0;
+        double B02 = 0;
         B02 += -0.02064 * Math.sin(Math.toRadians(144.899 + 371333.155 * T));
         B02 += 0.00845 * Math.sin(Math.toRadians(139.957 + 443331.256 * T));
         B02 += -0.00619 * Math.sin(Math.toRadians(196.48 + 860538.323 * T));
@@ -1362,7 +1358,7 @@ public class Elp2000 {
         B02 += -0.00009 * Math.sin(Math.toRadians(241.37 + 2292134.926 * T));
         B02 += 0.00009 * Math.sin(Math.toRadians(36.75 + 65994.951 * T));
 
-        double B03=0;
+        double B03 = 0;
         B03 += -0.61 * Math.sin(Math.toRadians(144.9 + 371333.2 * T));
         B03 += 0.25 * Math.sin(Math.toRadians(140 + 443331.3 * T));
         B03 += -0.17 * Math.sin(Math.toRadians(331.4 + 1337737.2 * T));
@@ -1376,7 +1372,7 @@ public class Elp2000 {
         B03 += 0.11 * Math.sin(Math.toRadians(315.8 + 42002.2 * T));
         B03 += -0.06 * Math.sin(Math.toRadians(147.4 + 335334.1 * T));
 
-        double trueB=B+(B01+B02*T+B03*T*T/10000)/1000;
+        double trueB = B + (B01 + B02 * T + B03 * T * T / 10000) / 1000;
 
         /*T = (JDE - 2451545) / 36525
 Aberasi = -0.00001754 * DegSin(183.3 + 483202 * T)

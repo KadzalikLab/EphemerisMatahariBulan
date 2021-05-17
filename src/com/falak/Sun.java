@@ -5,49 +5,48 @@ public class Sun {
     /**
      * Mendapatkan data-data matahari menggunakan metode buku Astonomy Algorithms - Jean Meeus
      * dimana perhitunganya ada di class: {@link Calculation#astroAlgo(double jd)}}
-     * @author Kadzalik Lab
      * @version 1.0
-     * @see <a href="http://www.agopax.it/Libri_astronomia/pdf/Astronomical%20Algorithms.pdf">http://www.agopax.it/Libri_astronomia/pdf/Astronomical%20Algorithms.pdf</a>
+     * @see <a href="http://www.agopax.it/Libri_astronomia/pdf/Astronomical%20Algorithms.pdf">Astronomical Algorithms.pdf</a>
      * @since 2021-03-31
      */
-    static class AstroAlgo {
+    public static class AstroAlgo {
 
 
         //nilai sebenarnya Bujur Matahari Koordinat Ekliptika Geosentrik
-        static double trueGeocentricLongitude(double jd) {
+        public static double trueGeocentricLongitude(double jd) {
             return Calculation.astroAlgo(jd)[1];
         }
         //nilai nampak Bujur Matahari Koordinat Ekliptika Geosentrik
-        static double apparentGeocentricLongitude(double jd) {
+        public static double apparentGeocentricLongitude(double jd) {
             return Calculation.astroAlgo(jd)[2];
         }
 
         //nilai sebenarnya Lintang Matahari Koordinat Ekliptika Geosentrik
-        static double geocentricLatitude(double jd) {
+        public static double geocentricLatitude(double jd) {
             return Calculation.astroAlgo(jd)[3];
         }
 
         //nilai nampak Asensio rekta / Panjatan tegak / Bujur Matahari Koordinat Ekuator Geosentrik
-        static double apparentRightAscension(double jd) {
+        public static double apparentRightAscension(double jd) {
             return Calculation.astroAlgo(jd)[4];
         }
 
         //nilai nampak Deklinasi / lintang Matahari Koordinat Ekuator Geosentrik
-        static double apparentDeclination(double jd) {
+        public static double apparentDeclination(double jd) {
             return Calculation.astroAlgo(jd)[5];
         }
 
         //Jarak Bumi - Matahari Vector
-        static double trueGeocentricDistance(double jd) {
+        public static double trueGeocentricDistance(double jd) {
             return Calculation.astroAlgo(jd)[6];
         }
 
         //Semi diameter / piringan Matahari
-        static double angularSemiDiameter(double jd) {
+        public static double angularSemiDiameter(double jd) {
             return Calculation.astroAlgo(jd)[7];
         }
         //Perata waktu
-        static double equationOfTime(double jd) {
+        public static double equationOfTime(double jd) {
 
             double tau, alpha, deltaPsi, epsilon, L0, e;
             tau = Calculation.astroAlgo(jd)[8];
@@ -67,7 +66,7 @@ public class Sun {
         }
 
         //Horizontal paralaks
-        static double equatorialHorizontalParallax(double jd) {
+        public static double equatorialHorizontalParallax(double jd) {
             double R = trueGeocentricDistance(jd);
             double phi = Math.toDegrees(Math.asin(Math.sin(Math.toRadians(8.794 / 3600d)) / R));
 
@@ -75,20 +74,20 @@ public class Sun {
         }
 
         //Kemiringan sumbu bumi
-        static double trueObliquity(double jd) {
+        public  static double trueObliquity(double jd) {
             return Calculation.astroAlgo(jd)[10];
         }
 
     }
 
 
-    static class Vsop87 {
+    public static class Vsop87 {
 
-        static double trueGeocentricLongitude(double jd) {
+        public static double trueGeocentricLongitude(double jd) {
             return Calculation.vsop87(jd)[1];
         }
 
-        static double apparentGeocentricLongitude(double jd) {
+        public static double apparentGeocentricLongitude(double jd) {
             return Calculation.vsop87(jd)[2];
         }
 
@@ -96,31 +95,31 @@ public class Sun {
 //        static double (double jd){
 //            return  Calculation.meeus(jd)[]; }
 
-        static double geocentricLatitude(double jd) {
+        public   static double geocentricLatitude(double jd) {
             return Calculation.vsop87(jd)[3];
         }
 
 
-        static double apparentRightAscension(double jd) {
+        public  static double apparentRightAscension(double jd) {
             return Calculation.vsop87(jd)[4];
         }
 
 
-        static double apparentDeclination(double jd) {
+        public  static double apparentDeclination(double jd) {
             return Calculation.vsop87(jd)[5];
         }
 
 
-        static double trueGeocentricDistance(double jd) {
+        public static double trueGeocentricDistance(double jd) {
             return Calculation.vsop87(jd)[6];
         }
 
 
-        static double angularSemiDiameter(double jd) {
+        public static double angularSemiDiameter(double jd) {
             return Calculation.vsop87(jd)[7];
         }
 
-        static double equationOfTime(double jd) {
+        public  static double equationOfTime(double jd) {
 
             double tau, alpha, deltaPsi, epsilon, L0, e;
             tau = Calculation.vsop87(jd)[8];
@@ -139,14 +138,14 @@ public class Sun {
             return e;
         }
 
-        static double equatorialHorizontalParallax(double jd) {
+        public  static double equatorialHorizontalParallax(double jd) {
             double R = trueGeocentricDistance(jd);
             double phi = Math.toDegrees(Math.asin(Math.sin(Math.toRadians(8.794 / 3600d)) / R));
 
             return phi;
         }
 
-        static double trueObliquity(double jd) {
+        public  static double trueObliquity(double jd) {
             return Calculation.astroAlgo(jd)[10];
         }
 

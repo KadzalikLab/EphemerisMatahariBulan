@@ -1,7 +1,5 @@
 package com.falak;
 
-import com.falak.term.Nutation;
-
 import java.util.Locale;
 
 public class Main {
@@ -10,14 +8,16 @@ public class Main {
     public static void main(String[] args) {
 
         double tgl,bln,thn,jam,mnt,dtk,jamDes;
-        tgl=1;
-        bln=1;
-        thn=2013;
+        tgl=17;
+        bln=8;
+        thn=1945;
         jam=0;
         mnt=0;
         dtk=0;
+        boolean masehi=false;
+        if (!masehi)thn=-(thn-1); //jika sebelum masehi
         jamDes=Konversi.dmsKeDesimal(jam,mnt,dtk);
-        double jd = Konversi.kmJd(tgl,bln,thn,jamDes);
+        double jd = Konversi.masehiKeJd(tgl,bln,thn,jamDes);
 
         //semisal ingin mendapatkan nila apparent declination sun // deklinasi matahari
         double dek_mat  = Sun.Vsop87.apparentDeclination(jd);
@@ -28,39 +28,38 @@ public class Main {
 
         double delta_T=DynamicalTime.delta_t(tgl,bln,thn); // mau pakai delta T atau tidak?
         // jd +=(delta_T/86400); //JD waktu TD(Dynamical time)
-        double t = (jd - 2451545) / 36525.0;
-        System.out.println(Nutation.deltaPsi(t));
+        System.out.println(dmsMili(Sun.AstroAlgo.trueGeocentricLongitude(jd)));
 
-        System.out.printf(format2
-                , "Pukul"
-                , "Longitude"
-                , "Latitude"
-                , "Appr Right Asc"
-                , "Appr Declination"
-                , "Geo distance"
-                , "Semi diameter"
-                , "Obliquity"
-                , "EoT"
-        );
-        metodeAstroAlgo(jd);
-        metodeVsop87(jd);
+//        System.out.printf(format2
+//                , "Pukul"
+//                , "Longitude"
+//                , "Latitude"
+//                , "Appr Right Asc"
+//                , "Appr Declination"
+//                , "Geo distance"
+//                , "Semi diameter"
+//                , "Obliquity"
+//                , "EoT"
+//        );
+//        metodeAstroAlgo(jd);
+//        metodeVsop87(jd);
 
-        System.out.println(System.lineSeparator());
-        System.out.printf(format2
-                , "Pukul"
-                , "Longitude"
-                , "Latitude"
-                , "Appr Right Asc"
-                , "Appr Declination"
-                , "Parallax"
-                , "Semi diameter"
-                , "Angle Bright"
-                , "Fib"
-        );
-        metodeAstroAlgoBulan(jd);
-        metodeElp2000(jd);
-        metodeElpMpp02Trunc(jd);
-        metodeElpMpp02(jd);
+//        System.out.println(System.lineSeparator());
+//        System.out.printf(format2
+//                , "Pukul"
+//                , "Longitude"
+//                , "Latitude"
+//                , "Appr Right Asc"
+//                , "Appr Declination"
+//                , "Parallax"
+//                , "Semi diameter"
+//                , "Angle Bright"
+//                , "Fib"
+//        );
+//        metodeAstroAlgoBulan(jd);
+//        metodeElp2000(jd);
+//        metodeElpMpp02Trunc(jd);
+//        metodeElpMpp02(jd);
 
 //        for (int i = 0; i<=24;i++){
 //            vsop87Metode(jd);
@@ -293,12 +292,12 @@ public class Main {
     }
 
     public  static String jd_km(double jd){
-        int tanggal=Konversi.jdKm(jd)[1]; // 1 berarti mengambil array urutan nomor 1, yaitu yang berisikan nilai tanggal
-        int bulan=Konversi.jdKm(jd)[2];
-        int tahun=Konversi.jdKm(jd)[3];
+        int tanggal=Konversi.jdKeMasehi(jd)[1]; // 1 berarti mengambil array urutan nomor 1, yaitu yang berisikan nilai tanggal
+        int bulan=Konversi.jdKeMasehi(jd)[2];
+        int tahun=Konversi.jdKeMasehi(jd)[3];
         double jam_des = Konversi.jdPukul(jd);
-        int nomor_hari = Konversi.jdKm(jd)[7]; // 7 berarti mengambil array urutan nomor 7, yaitu yang berisikan nilai nomor hari
-        int nomor_pasaran= Konversi.jdKm(jd)[8];
+        int nomor_hari = Konversi.jdKeMasehi(jd)[7]; // 7 berarti mengambil array urutan nomor 7, yaitu yang berisikan nilai nomor hari
+        int nomor_pasaran= Konversi.jdKeMasehi(jd)[8];
         return Konversi.namahari(nomor_hari)+" "+Konversi.namapasaran(nomor_pasaran)+", "+tanggal+" "+Konversi.namaBulanMasehi(bulan)+" "+tahun+" | "+Konversi.hmsMili(jam_des);
     }
 
@@ -306,6 +305,11 @@ public class Main {
         double jam_des = Konversi.jdPukul(jd);
         if (jam_des<0)      return "-"+(int) Konversi.desimalKeDmsMili(jam_des)[1]+":"+(int) Konversi.desimalKeDmsMili(jam_des)[2]+":"+String.format("%.3f", Konversi.desimalKeDmsMili(jam_des)[3]);
         else return (int) Konversi.desimalKeDmsMili(jam_des)[1]+":"+(int) Konversi.desimalKeDmsMili(jam_des)[2]+":"+String.format("%.3f", Konversi.desimalKeDmsMili(jam_des)[3]);
+    }
+
+    public static String dmsMili(double desimal){
+        if (desimal<0)      return "-"+(int) Konversi.desimalKeDmsMili(desimal)[1]+"\u00B0"+(int) Konversi.desimalKeDmsMili(desimal)[2]+"\u2032"+String.format("%.3f", Konversi.desimalKeDmsMili(desimal)[3])+"\u2033";
+        else return (int) Konversi.desimalKeDmsMili(desimal)[1]+"\u00B0"+(int) Konversi.desimalKeDmsMili(desimal)[2]+"\u2032"+String.format("%.3f", Konversi.desimalKeDmsMili(desimal)[3])+"\u2033";
     }
 
     //print dengan Style spt Winhisab
